@@ -1,0 +1,16 @@
+<div>{{fecha}}</div>
+
+<app-login *ngIf="mostrar" (onCambiar)="cambiar($event)"></app-login>
+<app-resumen *ngIf="!mostrar" [datoUsuario]="correo"></app-resumen>
+
+<ul>
+  <li *ngFor="let nombre of usuarios">
+    {{nombre}}
+  </li>
+</ul>
+
+
+<!-- <button (click)="cambiar()">Mostrar / Ocultar</button> -->
+
+<!-- var btn = document.querSelector("button")
+btn.addEventListener("click", function(){}) -->
