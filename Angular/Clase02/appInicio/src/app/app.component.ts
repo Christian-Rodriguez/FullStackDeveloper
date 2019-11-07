@@ -12,6 +12,8 @@ export class AppComponent {
   /* usuarios: Array<string> */
   usuarios: string[] = ["Carmela", "Alfredo", "Oscar", "Marcela"]
 
+  lista: Array<string> = []
+
   // for(let indice=0; indice<usuarios.length; indice++)
   // usuarios.forEach(nombre => console.log(nombre))
   // for(let nombre of usuarios) {console.log(nombre)}
@@ -24,5 +26,9 @@ export class AppComponent {
     this.correo = correo
     console.log(correo)
     this.mostrar = !this.mostrar
+  }
+
+  nuevo(nombre) {
+    this.lista.unshift(nombre)
   }
 }

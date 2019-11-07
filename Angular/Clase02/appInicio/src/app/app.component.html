@@ -9,6 +9,11 @@
   </li>
 </ul>
 
+<div class="container d-flex">
+  <app-formulario style="flex: 1 1 100%" (onAgregar)="nuevo($event)"></app-formulario>
+  <app-listado style="flex: 1 1 100%" [listado]="lista"></app-listado>
+</div>
+
 
 <!-- <button (click)="cambiar()">Mostrar / Ocultar</button> -->
 
