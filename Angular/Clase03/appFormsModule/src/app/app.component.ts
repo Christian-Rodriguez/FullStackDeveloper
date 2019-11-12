@@ -34,10 +34,10 @@ export class AppComponent {
   }
 
   ingresar() {
-    /*     if (this.formRegistro.valid) {
-          console.log("Formulario válido")
-        } */
+    if (this.formRegistro.valid) {
+      console.log("Formulario válido")
+    }
     // console.log(this.formRegistro)
-    console.log(this.formRegistro.value)
+    // console.log(this.formRegistro.value)
   }
 }

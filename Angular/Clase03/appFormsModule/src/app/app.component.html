@@ -1,8 +1,15 @@
 <form #formulario="ngForm">
   <input type="text" placeholder="Nombre completo" #nombre="ngModel" ngModel name="nombre" required><br>
+  <span *ngIf="!nombre.valid && nombre.touched">Nombre es obligatorio</span>
   <input type="text" placeholder="Correo" ngModel name="correo" required email #correo="ngModel"><br>
-  <input type="password" placeholder="Contrasena" name="contrasena" ngModel #contrasena="ngModel"><br>
-  <button type="button" (click)="ingresar(formulario)">Ingresar</button>
+  <span *ngIf="!correo.valid && correo.touched && correo.errors.required">Correo es obligatorio</span>
+  <span *ngIf="!correo.valid && correo.touched && correo.errors.email">Debe ser un correo</span><br>
+  <input type="password" placeholder="Contrasena" name="contrasena" ngModel #contrasena="ngModel"
+    pattern="[a-zA-Z]{3,5}[0-9]{4}"><br>
+  <span *ngIf="!contrasena.valid && contrasena.touched && contrasena.errors.required">Contrasena es obligatorio</span>
+  <span *ngIf="!contrasena.valid && contrasena.touched && contrasena.errors.pattern">Debe iniciar con letras (de 3 a 5)
+    y terminar con 4 dígitos</span><br>
+  <button type="button" [disabled]="formulario.invalid" (click)="ingresar(formulario)">Ingresar</button>
   <button type="button" (click)="cargarData()">Cargar data</button>
   <button type="button" (click)="cargarDataParcial()">Cargar data parcial</button>
   <button type="button" (click)="resetear()">Resetear</button>
