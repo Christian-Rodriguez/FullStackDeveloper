@@ -1,13 +1,9 @@
-<!-- <input type="text" [ngModel]="nombre" (ngModelChange)="nombre=$event">
-<p>{{nombre}}</p>
-<input type="text" [(ngModel)]="nombre">
-<hr> -->
 <form #formulario="ngForm">
   <input type="text" placeholder="Nombre completo" #nombre="ngModel" ngModel name="nombre" required><br>
-  <span *ngIf="nombre.errors && nombre.errors.required && nombre.touched">El nombre es obligatorio</span><br>
   <input type="text" placeholder="Correo" ngModel name="correo" required email #correo="ngModel"><br>
-  <span *ngIf="correo.errors && correo.errors.required && correo.touched">El correo es requerido</span>
-  <span *ngIf="correo.errors && correo.errors.email && correo.touched">Debe ser un correo</span><br>
-  <input type="password" placeholder="Contrasena" name="contrasena" ngModel required><br>
+  <input type="password" placeholder="Contrasena" name="contrasena" ngModel #contrasena="ngModel"><br>
   <button type="button" (click)="ingresar(formulario)">Ingresar</button>
+  <button type="button" (click)="cargarData()">Cargar data</button>
+  <button type="button" (click)="cargarDataParcial()">Cargar data parcial</button>
+  <button type="button" (click)="resetear()">Resetear</button>
 </form>
