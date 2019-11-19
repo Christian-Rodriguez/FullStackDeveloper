@@ -17,17 +17,17 @@ export class Validadores {
     return validarCorreosGratuitos
   }
 
-    static validarConfirmacionContrasena(fc:AbstractControl): {[s: string]: string} {
-    if(!fc || !fc.parent) return null
+  static validarConfirmacionContrasena(fc: AbstractControl): { [s: string]: string } {
+    if (!fc || !fc.parent) return null
 
     const contrasena = fc.parent.get("contrasena")
     const confirmacion = fc.parent.get("confirmacion")
 
-    if(!contrasena || !confirmacion) return null
+    if (!contrasena || !confirmacion) return null
 
-    if(contrasena.value.trim()=="") return null
+    if (contrasena.value.trim() == "") return null
 
-    if(contrasena.value != confirmacion.value) return {contrasenaNoCoincide: "La contrasena y la confirmación no coinciden"}
+    if (contrasena.value != confirmacion.value) return { contrasenaNoCoincide: "La contrasena y la confirmación no coinciden" }
 
     return null
 

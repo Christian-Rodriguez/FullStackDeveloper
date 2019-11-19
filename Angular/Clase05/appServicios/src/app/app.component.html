@@ -1,0 +1,9 @@
+<input type="text" placeholder="Ingrese un nombre" [(ngModel)]="nombreUsuario">
+<button (click)="insertar()">Ingresar</button>
+<button (click)="listar()">Listar</button>
+<table>
+  <tr *ngFor="let usuario of listaUsuarios">
+    <td>{{usuario}}</td>
+  </tr>
+</table>
+<app-usuarios></app-usuarios>
