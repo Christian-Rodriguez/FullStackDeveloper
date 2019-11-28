@@ -44,6 +44,10 @@ export class UsuarioEdicionComponent implements OnInit {
       }
     )
 
+    this.activatedRoute.fragment.subscribe((parameter) => {
+      this.rol = parameter
+    })
+
     this.categoria = this.activatedRoute.snapshot.queryParamMap.get("cat")
 
     this.tema = this.activatedRoute.snapshot.queryParamMap.get("tema")
@@ -56,7 +60,7 @@ export class UsuarioEdicionComponent implements OnInit {
   irAlId() {
     this.router.navigate(
       ["/usuario", "edicion", 100],
-      { queryParamsHandling: "merge", queryParams: { cat: "americano" } }
+      { queryParamsHandling: "merge", queryParams: { cat: "americano" }, fragment: "operador" }
       /* { queryParams: { cat: "Literatura", tema: this.tema } } */
     ) //  /usuario/edicion/100?cat=...&tema=...
   }
