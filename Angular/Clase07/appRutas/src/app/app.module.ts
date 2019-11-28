@@ -11,16 +11,18 @@ import { RutaNoEncontradaComponent } from './ruta-no-encontrada/ruta-no-encontra
 import { UsuarioListadoComponent } from './usuario-listado/usuario-listado.component';
 import { UsuarioEdicionComponent } from './usuario-edicion/usuario-edicion.component';
 import { UsuarioNuevoComponent } from './usuario-nuevo/usuario-nuevo.component'
+import { AutenticacionGuard } from './seguridad/autenticacion.guard';
+import { AutorizationGuard } from './seguridad/autorizacion.guard';
 
 
 const routes: Routes = [
   { path: "", component: LoginComponent },
-  { path: "homeweb", component: HomeComponent },
+  { path: "homeweb", component: HomeComponent, canActivate: [AutenticacionGuard, AutorizationGuard] },
   {
     path: "usuario", component: UsuarioListadoComponent, children: [
- /*      { path: "", component: UsuarioListadoComponent }, */
+      /*      { path: "", component: UsuarioListadoComponent }, */
       { path: "edicion/:id", component: UsuarioEdicionComponent },
-      { path: "nuevo", component: UsuarioNuevoComponent },
+      { path: "nuevo", component: UsuarioNuevoComponent, canActivate: [AutenticacionGuard] },
     ]
   },
   { path: "cliente", component: ClienteComponent },
@@ -44,7 +46,7 @@ const routes: Routes = [
     BrowserModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [AutenticacionGuard, AutorizationGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
