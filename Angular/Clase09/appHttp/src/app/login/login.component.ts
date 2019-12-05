@@ -1,44 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Observer, Subscription } from 'rxjs';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../servicios/auth.service';
+import { Usuario } from '../modelos/usuario';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+	selector: 'app-login',
+	templateUrl: './login.component.html',
+	styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 
-  resultados = []
-  resultadosFotos = []
+	grupo: FormGroup
 
-  suscripcion: Subscription
+	constructor(private auth: AuthService) { }
 
-  constructor() { }
+	ngOnInit() {
+		this.grupo = new FormGroup({
+			correo: new FormControl(null, [Validators.required, Validators.email]),
+			contrasena: new FormControl(null, Validators.required)
+		})
+	}
 
-  ngOnInit() {
-
-    const obs: Observable<Array<{}>> = Observable.create(
-      (observador: Observer<Array<{}>>) => {
-        const http: XMLHttpRequest = new XMLHttpRequest()
-        http.onreadystatechange = function () {
-          if (this.status == 200 && this.readyState == 4) {
-            observador.next(JSON.parse(this.responseText))
-          }
-        }
-        http.open("get", "https://jsonplaceholder.typicode.com/todos")
-        http.send()
-      }
-    )
-
-    this.suscripcion = obs.subscribe(
-      mensaje => this.resultados = mensaje,
-      error => console.log("Error", error),
-      () => console.log("Complete", "Se terminó la chamba")
-    )
-  }
-
-  ngOnDestroy() {
-    this.suscripcion.unsubscribe()
-  }
+	login() {
+		const usuario: Usuario = this.grupo.getRawValue()
+		this.auth.login(usuario)
+	}
 
 }

@@ -25,7 +25,8 @@ export class RegistroComponent implements OnInit {
 	registrar() {
 		const usuario: Usuario = this.grupo.value
 		this.auth.registrar(usuario)
-
 	}
+
+
 
 }

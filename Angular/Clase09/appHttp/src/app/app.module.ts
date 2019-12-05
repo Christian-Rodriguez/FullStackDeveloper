@@ -15,12 +15,14 @@ import { AutenticacionGuard } from './seguridad/autenticacion.guard';
 import { AutorizationGuard } from './seguridad/autorizacion.guard';
 import { HttpClientModule } from "@angular/common/http";
 import { RegistroComponent } from './registro/registro.component'
-import { ReactiveFormsModule } from "@angular/forms"
+import { ReactiveFormsModule } from "@angular/forms";
+import { ProductoComponent } from './producto/producto.component'
 
 const routes: Routes = [
 	{ path: "", component: LoginComponent },
 	{ path: "registro", component: RegistroComponent },
-	{ path: "homeweb", component: HomeComponent, canActivate: [AutenticacionGuard, AutorizationGuard] },
+	{ path: "homeweb", component: HomeComponent, canActivate: [AutenticacionGuard] },
+	{ path: "producto", component: ProductoComponent },
 	{
 		path: "usuario", component: UsuarioListadoComponent, canActivate: [AutenticacionGuard], children: [
 			{ path: "edicion/:id", canActivate: [AutorizationGuard], component: UsuarioEdicionComponent },
@@ -43,7 +45,8 @@ const routes: Routes = [
 		UsuarioListadoComponent,
 		UsuarioEdicionComponent,
 		UsuarioNuevoComponent,
-		RegistroComponent
+		RegistroComponent,
+		ProductoComponent
 	],
 	imports: [
 		BrowserModule,
